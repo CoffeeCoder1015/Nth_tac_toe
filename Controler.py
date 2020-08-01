@@ -9,7 +9,6 @@ def X_manual():
         x_ip = input("x position:")
         x_ip = x_ip.split(" ")
         rc = testGame.updateBoard("x", x_ip)
-        print(rc)
         if rc == None:
             testGame.display()
             break

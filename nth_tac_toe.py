@@ -21,10 +21,10 @@ class Game:
 
         x = int(positionVector[0])-1
         y = int(positionVector[1])-1
-        if x > self.boardSize or y > self.boardSize:
+        if x >= self.boardSize or y >= self.boardSize:
             print("max size is", self.boardSize)
             return 6
-
+            
         if self.gameBoard[x][y] != "-":
             return 2
 
