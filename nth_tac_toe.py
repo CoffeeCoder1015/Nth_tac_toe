@@ -24,7 +24,7 @@ class Game:
         if x >= self.boardSize or y >= self.boardSize:
             print("max size is", self.boardSize)
             return 6
-            
+
         if self.gameBoard[x][y] != "-":
             return 2
 
@@ -32,76 +32,57 @@ class Game:
         self.check()
 
     def check(self):
-        str_checks = None
-        up_checks = None
-        crs_checks = None
-        checks = ["x", "o"]
-        crs_c = []
-        crs_r = []
+        chks = ["x", "o"]
+        # hori check
+        for i in range(0, self.boardSize):
+            itms = "".join(self.gameBoard[i])
+            for i in range(2):
+                if itms.count(chks[i]) == len(itms):
+                    print(colored(chks[i], "red"), "has won")
+                    self.curr_playing = False
+                    return
+        # vert check
+        for i in range(0, self.boardSize):
+            itms = ""
+            for j in range(0, self.boardSize):
+                itms += self.gameBoard[j][i]
+            for i in range(2):
+                if itms.count(chks[i]) == len(itms):
+                    print(colored(chks[i], "red"), "has won")
+                    self.curr_playing = False
+                    return
 
-        i = 0
-        while 1:
+        # cross check 1
+        itms = ""
+        for j in range(0, self.boardSize):
+            itms += self.gameBoard[j][j]
 
-            if i == self.boardSize:
-                break
-
-            rws = []
-            crs_c.extend(self.gameBoard[i][i])
-            crs_r.extend(self.gameBoard[i][self.boardSize-(i+1)])
-
-            r = 0
-            while 1:
-                if r == self.boardSize:
-                    break
-                idt = self.gameBoard[r][i]
-                rws.extend(idt)
-                r += 1
-
-            unique, counts = np.unique(self.gameBoard[i], return_counts=True)
-            unique, counts = list(unique), list(counts)
-
-            for C in checks:
-                try:
-                    _up_amm = rws.count(C)
-                    _str_amm = counts[int(unique.index(C))]
-                    up_comb = (C, _up_amm)
-                    str_comb = (C, _str_amm)
-                    if _up_amm == self.boardSize:
-                        up_checks = up_comb
-                    if _str_amm == self.boardSize:
-                        str_checks = str_comb
-                except:
-                    pass
-            i += 1
-
-        for i in checks:
-            try:
-                _crs_amm1 = crs_c.count(i)
-                _crs_amm2 = crs_r.count(i)
-
-                comb_1 = (i._crs_amm1)
-                comb_2 = (i._crs_amm2)
-
-                if _crs_amm1 == self.boardSize:
-                    crs_checks = comb_1
-
-                if _crs_amm2 == self.boardSize:
-                    crs_checks = comb_2
-            except:
-                pass
-
-        cklp = [str_checks, up_checks, crs_checks]
-        for i in cklp:
-            if i != None:
-                print(colored(i[0], "red"), "has won")
+        for i in range(2):
+            if itms.count(chks[i]) == len(itms):
+                print(colored(chks[i], "red"), "has won")
                 self.curr_playing = False
+                return
+
+        # cross check 2
+        itms = ""
+        rp = list(range(self.boardSize-1, -1, -1))
+
+        for i in range(0, self.boardSize):
+            itms += self.gameBoard[i][rp[i]]
+
+        for i in range(2):
+            if itms.count(chks[i]) == len(itms):
+                print(colored(chks[i], "red"), "has won")
+                self.curr_playing = False
+                return
 
     def display(self):
-        xy_row = [format(i+1, "0%s" %(len(str(self.boardSize)))) for i in range(0, self.boardSize)]
+        xy_row = [format(i+1, "0%s" % (len(str(self.boardSize))))
+                  for i in range(0, self.boardSize)]
         xyl_fmt = "/ "
 
         if self.boardSize >= 10:
-            xyl_fmt+=" "
+            xyl_fmt += " "
 
         print(colored(
             xyl_fmt+" ".join(xy_row), "yellow")
@@ -109,11 +90,11 @@ class Game:
         ms = ""
         for i in range(0, self.boardSize):
             itms = " ".join(self.gameBoard[i])
-            if self.boardSize >= 10:              
-                itms = itms.replace("-"," "+"-")
+            if self.boardSize >= 10:
+                itms = itms.replace("-", " "+"-")
 
             Id = colored(format(i+1, "0%s" %
                                 (len(str(self.boardSize)))), "yellow")
-            ms+=f"{Id} {itms}\n".format()
+            ms += f"{Id} {itms}\n".format()
         print(ms)
         self.check()
