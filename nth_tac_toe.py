@@ -98,6 +98,8 @@ class Game:
             itms = " ".join(self.gameBoard[i])
             if self.boardSize >= 10:
                 itms = itms.replace("-", " "+"-")
+                itms = itms.replace("x", " "+"x")
+                itms = itms.replace("o", " "+"o")
 
             Id = colored(format(i+1, "0%s" %
                                 (len(str(self.boardSize)))), "yellow")
