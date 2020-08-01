@@ -22,4 +22,4 @@ the second corresponds to the horizontal.
 
 link on repl:
 
-[Play](https://repl.it/repls/ContentRowdyActivecontent#nth_tac_toe.py)
+[Play](https://repl.it/github/CoffeeCoder1015/Nth_tac_toe)
