@@ -76,6 +76,12 @@ class Game:
                 self.curr_playing = False
                 return
 
+        #fill check
+        if str(self.gameBoard).count("-") == 0:
+            print(colored("No one", "red"), "has won")
+            self.curr_playing = False
+            return
+
     def display(self):
         xy_row = [format(i+1, "0%s" % (len(str(self.boardSize))))
                   for i in range(0, self.boardSize)]
