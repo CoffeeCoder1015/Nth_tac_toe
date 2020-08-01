@@ -26,6 +26,6 @@ link on repl:
 
 # Note
 This is not an computer v human game
-- its just a game board
+- its just a game board, you need to find some one else to compete with
 
 perhaps you play with your friend or something like that
