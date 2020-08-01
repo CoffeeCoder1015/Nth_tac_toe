@@ -23,3 +23,8 @@ the second corresponds to the horizontal.
 link on repl:
 
 [Play](https://repl.it/github/CoffeeCoder1015/Nth_tac_toe)
+
+# Note
+This is not an computer v human game
+- its just a game board
+perhaps you play with your friend or something like that
