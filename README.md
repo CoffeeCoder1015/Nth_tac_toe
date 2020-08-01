@@ -27,4 +27,5 @@ link on repl:
 # Note
 This is not an computer v human game
 - its just a game board
+
 perhaps you play with your friend or something like that
