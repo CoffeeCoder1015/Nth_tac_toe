@@ -111,7 +111,6 @@ class Game:
                 itms = itms.replace("-", " "+"-")
                 itms = itms.replace("x", " "+"x")
                 itms = itms.replace("o", " "+"o")
-            itms = itms.replace("-",colored("-",attrs=["blink"]))
             itms = itms.replace("x",colored("x",attrs=["bold"],color="blue"))
             itms = itms.replace("o",colored("o",attrs=["bold"],color="red"))
 
