@@ -15,12 +15,23 @@ class Game:
             print("Game has ended")
             return 0
 
+        if len(positionVector) != 2:
+            print("enter two values")
+            return 22
+
+
         TYPE = "<class 'int'>"
         if str(type(int(positionVector[0]))) != TYPE and str(type(int(positionVector[1]))) != TYPE:
             return 33
 
-        x = int(positionVector[0])-1
-        y = int(positionVector[1])-1
+        try:
+            x = int(positionVector[0])-1
+            y = int(positionVector[1])-1
+        except Exception:
+            if x >= self.boardSize or y >= self.boardSize:
+                print("max size is", self.boardSize)
+                return 6
+                
         if x >= self.boardSize or y >= self.boardSize:
             print("max size is", self.boardSize)
             return 6
@@ -100,6 +111,9 @@ class Game:
                 itms = itms.replace("-", " "+"-")
                 itms = itms.replace("x", " "+"x")
                 itms = itms.replace("o", " "+"o")
+            itms = itms.replace("-",colored("-",attrs=["blink"]))
+            itms = itms.replace("x",colored("x",attrs=["bold"],color="blue"))
+            itms = itms.replace("o",colored("o",attrs=["bold"],color="red"))
 
             Id = colored(format(i+1, "0%s" %
                                 (len(str(self.boardSize)))), "yellow")
